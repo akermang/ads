@@ -60,7 +60,7 @@
 }
 
 #play-button:hover,
-.play-icon:hover {
+#play-icon:hover {
   cursor: pointer;
   border-color: transparent transparent transparent #b9b9bb;
 }
