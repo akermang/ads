@@ -354,7 +354,7 @@
         }
 
         footer {
-          position: fixed;
+          position: static;
         }
       }
 
@@ -363,6 +363,9 @@
       }
 
       @media (max-width: 530px) {
+        footer {
+          position: fixed;
+        }
         .mobile-btn {
           display: block;
           background-color: #2196f3;
@@ -374,7 +377,7 @@
           left: 0;
           right: 0;
           bottom: 63px;
-          position: absolute;
+          position: static;
         }
         /* iframe {
           max-height: 53vw;
