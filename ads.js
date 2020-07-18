@@ -5,6 +5,7 @@ var adContainer;
 var adDisplayContainer;
 var adsLoader;
 var adsManager;
+var playIcom;
 
 window.addEventListener("load", function (event) {
   videoElement = document.getElementById("video-element");
@@ -13,9 +14,11 @@ window.addEventListener("load", function (event) {
     loadAds(event);
   });
   var playButton = document.getElementById("play-button");
+  playIcom = document.getElementById("play-icon");
   playButton.addEventListener("click", function (event) {
     videoElement.play();
-    playButton.style = "position: static; opacity: 0;visibility: hidden;"
+    playButton.style = "position: static; opacity: 0;visibility: hidden;";
+    playIcom.style.display = "none";
   });
 });
 
@@ -134,6 +137,7 @@ function onContentResumeRequested() {
 
 function adContainerClick(event) {
   console.log("ad container clicked");
+  playIcom.style.display = "none";
   if (videoElement.paused) {
     videoElement.play();
   } else {

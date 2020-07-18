@@ -273,7 +273,7 @@
       } */
 
       footer {
-        position: fixed;
+        position: static;
         bottom: 20px;
         width: 100%;
         color: gold;
@@ -351,6 +351,10 @@
         h1,
         h2 {
           font-size: 22px;
+        }
+
+        footer {
+          position: fixed;
         }
       }
 
@@ -438,7 +442,6 @@
           id="video-element"
           class="video-js"
           class="video-js vjs-tech"
-         
           frameborder="0"
           crossorigin
           controls
@@ -484,12 +487,14 @@
           </p>
         </video>
         <button id="play-button">
-          <img src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg">
+          <img
+            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
+          />
+          <div id="play-icon"></div>
         </button>
         <div id="ad-container"></div>
         <!-- </div> -->
       </div>
-
     </div>
 
     <a class="home-btn mobile-btn" style="color: white;" href="./list.html">
