@@ -16,6 +16,7 @@ window.addEventListener("load", function (event) {
   var playButton = document.getElementById("play-button");
   playIcom = document.getElementById("play-icon");
   playButton.addEventListener("click", function (event) {
+    console.log("play-button click")
     videoElement.play();
     playButton.style.display = "none";
     playIcom.style.display = "none";
@@ -136,8 +137,8 @@ function onContentResumeRequested() {
 }
 
 function adContainerClick(event) {
-  event.stopPropagation();
-  event.preventDefault();
+  // event.stopPropagation();
+  // event.preventDefault();
   console.log("ad container clicked");
   // playIcom.style.display = "none";
   // if (videoElement.paused) {
