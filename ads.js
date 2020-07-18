@@ -140,7 +140,6 @@ function adContainerClick(event) {
   // event.stopPropagation();
   // event.preventDefault();
   console.log("ad container clicked");
-  // playIcom.style.display = "none";
   // if (videoElement.paused) {
   //   videoElement.play();
   // } else {
