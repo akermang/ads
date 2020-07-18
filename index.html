@@ -127,6 +127,15 @@
         font-size: 30px;
       }
 
+      .top-color{
+        background-color: #9c27b0;
+        color: white;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
       div.img {
         text-align: center;
         border-radius: 2px;
@@ -408,23 +417,24 @@
   <body>
     <header>
       <div class="wrapper">
-        <div class="w3-container w3-blue row-flex">
+        <div class="w3-container top-color row-flex">
           <div class="home-btn">
-            <a href="./index.html">
+            <div href="./index.html">
               <h1>BeachCam.co.il</h1>
               <!-- <p>לפירסום כאן 054-6817830</p> -->
-            </a>
+            </div>
           </div>
-          <div class="animat-box-in">
-            <h2>JOHN FLORENCE</h2>
+          <div class="animat-box-in text-center">
+            <h2>מצלמות חוף ישראל</h2>
+            <label>אתר הבית לאוהבי הים והגלים</label>
           </div>
           <a
             class="home-btn title special"
             style="color: white;"
             href="./list.html"
           >
-            <p class="info">מצלמת חוף - שידור חי</p>
-            <h1>מצלמות חוף נוספות</h1>
+            <p class="info">שידור חי - מצלמת חוף</p>
+            <h2>מצלמות חוף נוספות</h2>
           </a>
         </div>
       </div>
@@ -449,7 +459,7 @@
           crossorigin
           controls
           preload="auto"
-          poster="https://frn.rtsp.me/k7kNn5KQTHfXmhNcBoH6nA/1595083341/poster/68h59RBY.jpg"
+          poster="./images/poster.png"
         >
           <source
             src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
@@ -491,7 +501,7 @@
         </video>
         <button id="play-button">
           <img
-            src="https://frn.rtsp.me/k7kNn5KQTHfXmhNcBoH6nA/1595083341/poster/68h59RBY.jpg"
+            src="./images/poster.png"
           />
           <div id="play-icon"></div>
         </button>
