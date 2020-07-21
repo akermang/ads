@@ -52,12 +52,13 @@
 }
 
 #play-icon {
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid #4e4e50;
-  background-color: #ffffff57;
+  border: 1px solid #24a1d3;
+  background-color: #ffffffcf;
   box-sizing: border-box;
   border-radius: 17px;
   transition: 100ms all ease;

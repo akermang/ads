@@ -8,19 +8,23 @@ var intervalTimer;
 var playButton;
 var videoContent;
 var adDisplayContainerInitialized;
+var loaderContainer;
 const AD_REQUEST_INTERVAL = 10;
 
 function init() {
   videoContent = document.getElementById('remoteVideo');
   console.log("videoContent clientWidth:",videoContent.clientWidth)
   playButton = document.getElementById("play-button");
-  playIcom = document.getElementById("play_button");
+  playIcom = document.getElementById("play-icon");
+  loaderContainer = document.getElementById("loader-container");
+  // playIcom.style.display = "none";
+
   adContainer = document.getElementById("ad-container");
   playButton.addEventListener("click", function (event) {
     console.log("play-button click")
     playAds();
     playButton.style.display = "none";
-    playIcom.style.display = "none";
+    // playIcom.style.display = "none";
   });
   // playButton.addEventListener('click', playAds);
   setUpAdsLoader();
@@ -103,6 +107,10 @@ function playAds() {
 }
 
 function onAdsManagerLoaded(adsManagerLoadedEvent) {
+  console.log("onAdsManagerLoaded")
+  playIcom.style.display = "block";
+  loaderContainer.style.display = "none";
+
   // Get the ads manager.
   var adsRenderingSettings = new google.ima.AdsRenderingSettings();
   adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
@@ -147,6 +155,8 @@ function onAdEvent(adEvent) {
       if (!ad.isLinear()) {
         // Position AdDisplayContainer correctly for overlay.
         // Use ad.width and ad.height.
+        console.log("if !ad.isLinear")
+        console.log("ad.width:", ad.width)
         videoContent.play();
       }
       break;
@@ -160,6 +170,7 @@ function onAdEvent(adEvent) {
         intervalTimer = setInterval(
             function() {
               var remainingTime = adsManager.getRemainingTime();
+              console.log("remainingTime:", remainingTime)
             },
             300); // every 300ms
       }
