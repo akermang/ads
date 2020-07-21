@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
-    <!-- <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" /> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.css" /> -->
-    <!-- <link rel="stylesheet" href="./videojs.ima.css" /> -->
+    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
 
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-    <!-- <script src="https://unpkg.com/video.js@6/dist/video.js"></script> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <script src="https://unpkg.com/video.js@6/dist/video.js"></script>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -60,12 +57,7 @@
       gtag("js", new Date());
       gtag("config", "UA-22782431-1");
     </script>
-    <script src="js/fetch.js"></script>
-    <script src="js/promise.min.js"></script>
-    <script src="js/fetch.stream.js"></script>
-    <script src="js/webrtc_adaptor.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <link rel="stylesheet" href="./style.css" />
+
     <style>
       @keyframes loader-spin {
         0% {
@@ -132,15 +124,6 @@
         font-size: 30px;
       }
 
-      .top-color{
-        background-color: #9c27b0;
-        color: white;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
       div.img {
         text-align: center;
         border-radius: 2px;
@@ -202,10 +185,10 @@
         min-width: 33%;
       }
 
-      /* iframe {
+      iframe {
         width: 98%;
         min-height: 30vh;
-      } */
+      }
 
       .loader-container {
         display: flex;
@@ -281,13 +264,13 @@
         opacity: 1;
       }
 
-      /* #iframe-1 {
+      #iframe-1 {
         position: relative;
         z-index: 2;
-      } */
+      }
 
       footer {
-        position: static;
+        position: fixed;
         bottom: 20px;
         width: 100%;
         color: gold;
@@ -366,10 +349,6 @@
         h2 {
           font-size: 22px;
         }
-
-        footer {
-          position: static;
-        }
       }
 
       .mobile-btn {
@@ -377,9 +356,6 @@
       }
 
       @media (max-width: 530px) {
-        footer {
-          position: fixed;
-        }
         .mobile-btn {
           display: block;
           background-color: #2196f3;
@@ -391,11 +367,11 @@
           left: 0;
           right: 0;
           bottom: 63px;
-          position: static;
+          position: absolute;
         }
-        /* iframe {
+        iframe {
           max-height: 53vw;
-        } */
+        }
 
         .loader-container {
           top: 160px;
@@ -419,6 +395,7 @@
       }
     </style>
   </head>
+
   <body>
     <header>
       <div class="wrapper">
@@ -452,24 +429,30 @@
         </p>
       </div>
     </nav>
-    <div id="page-content">
-      <div id="video-container">
-        <!-- <div class="cams-container"> -->
+    <div class="main-container">
+      <div class="cam-title">BeachCam.co.il</div>
+
+      <div class="cams-container" id="video-container">
         <video
-          id="remoteVideo"
+          id="video-element"
+          autoplay
           class="video-js"
+         
           class="video-js vjs-tech"
+          height="400px"
           frameborder="0"
           crossorigin
-          
+          controls
           preload="auto"
           poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
+          data-setup="{}"
         >
-          <!-- <source
-            src="wss://ec2-3-95-58-217.compute-1.amazonaws.com:8443"
+          <!-- Video files -->
+          <source
+            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
             type="video/mp4"
-            size="720"
-          /> -->
+            size="576"
+          />
           <source
             src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
             type="video/mp4"
@@ -480,6 +463,7 @@
             type="video/mp4"
             size="1080"
           />
+
           <!-- Caption files -->
           <track
             kind="captions"
@@ -503,19 +487,14 @@
             >
           </p>
         </video>
-        <button id="play-button">
-          <img
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
-          />
-          <div id="play-icon">
-            <img class="image-play" src="./images/play.png" alt="play">
-          </div>
-        </button>
-        <div id="ad-container"></div>
-        <!-- </div> -->
+      </div>
+      <div class="jump-btn" onclick="location.reload()">
+        דלג
       </div>
     </div>
-
+    <div id="loader-container" class="loader-container">
+      <div class="loader"></div>
+    </div>
     <a class="home-btn mobile-btn" style="color: white;" href="./list.html">
       <h1>מצלמות חוף נוספות</h1>
     </a>
@@ -524,11 +503,114 @@
         <a style="color: gold;" href="./index.html"> מצלמת חוף Beach Cam </a>
       </p>
     </footer>
-    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.min.js"></script>
-    <script src="videojs.ima.js"></script>
-    <script src="player.js"></script> -->
+    <script>
+      // const cam = document.querySelector("#cam1");
+      // const camContainer = document.querySelector(".cams-container");
+      // // const camTitle = document.querySelector(".cam-title");
+      // const loader = document.querySelector(".loader-container");
+      // const message = document.querySelector(".message");
+      // const jumpBtn = document.querySelector(".jump-btn");
 
-    <script src="./ads.js"></script>
+      // const elem = document.documentElement;
+      // const openFullscreen = () => {
+      //   if (elem.requestFullscreen) {
+      //     elem.requestFullscreen();
+      //   } else if (elem.mozRequestFullScreen) {
+      //     /* Firefox */
+      //     elem.mozRequestFullScreen();
+      //   } else if (elem.webkitRequestFullscreen) {
+      //     /* Chrome, Safari & Opera */
+      //     elem.webkitRequestFullscreen();
+      //   } else if (elem.msRequestFullscreen) {
+      //     /* IE/Edge */
+      //     elem.msRequestFullscreen();
+      //   }
+      // };
+
+      // const closeFullscreen = () => {
+      //   if (document.exitFullscreen) {
+      //     document.exitFullscreen();
+      //   } else if (document.mozCancelFullScreen) {
+      //     document.mozCancelFullScreen();
+      //   } else if (document.webkitExitFullscreen) {
+      //     document.webkitExitFullscreen();
+      //   } else if (document.msExitFullscreen) {
+      //     document.msExitFullscreen();
+      //   }
+      // };
+
+      // const showJumpBtn = () => {
+      //   jumpBtn.classList.add("show");
+      // };
+
+      // const togglesize = () => {
+      //   camContainer.classList.toggle("full-size");
+      // };
+
+      // const changeView = () => {
+      //   cam.style.maxWidth = "800px";
+      //   cam.style.position = "static";
+      //   cam.style.maxHeight = "350px";
+      //   cam.style.margin = "30px 15%";
+      //   // camTitle.style.display = "none";
+      //   closeFullscreen();
+      //   cam.src = "./ad.html";
+      //   showJumpBtn();
+      // };
+
+      // cam.onload = () => {
+      //   loader.style.display = "none";
+      //   camContainer.style.display = "flex";
+      // };
+
+      // const timeOut = () =>
+      //   setTimeout(() => {
+      //     changeView();
+      //   }, 65000);
+      // timeOut();
+
+      // cam.onerror = () => {
+      //   clearTimeout(timeOut);
+      //   window.location = "./list.html";
+      // };
+    </script>
+    <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+    <script>
+      // This example script hides the "Big Play Button" (a.k.a. BPB),
+      // which may be useful to prevent it flashing and presenting a
+      // playable UI
+
+      var player = videojs(document.querySelector(".video-js"));
+      var bpb = player.getChild("bigPlayButton");
+
+      // It's always a good idea to verify that a component exists before
+      // doing things with it.
+      if (bpb) {
+        // Hide the BPB as early as possible, before the player is ready.
+        bpb.hide();
+
+        player.ready(function () {
+          var promise = player.play();
+          const obj = document.querySelector(".animat-box-in");
+          setTimeout(() => player.play(), 2000);
+
+          // If no promise is returned, show the BPB immediately.
+          if (promise === undefined) {
+            bpb.show();
+            // If a promise is returned, wait until it either succeeds or
+            // fails to show the BPB.
+          } else {
+            promise.then(
+              function () {
+                bpb.show();
+              },
+              function () {
+                bpb.show();
+              }
+            );
+          }
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="./webrtc_adaptor.js" ></script>
     <!-- <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" /> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.css" /> -->
     <!-- <link rel="stylesheet" href="./videojs.ima.css" /> -->
@@ -39,7 +41,7 @@
       type="image/png"
       href="https://akermang.github.io/WeatherApp/sun-favicon.png"
     />
-    <title>מצלמות חופים | BeachCam | JOHN FLORENCE</title>
+    <title>מצלמות חופים | BeachCam |  מצלמות חוף ישראל</title>
     <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
@@ -60,11 +62,6 @@
       gtag("js", new Date());
       gtag("config", "UA-22782431-1");
     </script>
-    <script src="js/fetch.js"></script>
-    <script src="js/promise.min.js"></script>
-    <script src="js/fetch.stream.js"></script>
-    <script src="js/webrtc_adaptor.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <link rel="stylesheet" href="./style.css" />
     <style>
       @keyframes loader-spin {
@@ -422,23 +419,24 @@
   <body>
     <header>
       <div class="wrapper">
-        <div class="w3-container w3-blue row-flex">
+        <div class="w3-container top-color row-flex">
           <div class="home-btn">
-            <a href="./index.html">
+            <div href="./index.html">
               <h1>BeachCam.co.il</h1>
               <!-- <p>לפירסום כאן 054-6817830</p> -->
-            </a>
+            </div>
           </div>
-          <div class="animat-box-in">
-            <h2>JOHN FLORENCE</h2>
+          <div class="animat-box-in text-center">
+            <h2>מצלמות חוף ישראל</h2>
+            <label>אתר הבית לאוהבי הים והגלים</label>
           </div>
           <a
             class="home-btn title special"
             style="color: white;"
             href="./list.html"
           >
-            <p class="info">מצלמת חוף - שידור חי</p>
-            <h1>מצלמות חוף נוספות</h1>
+            <p class="info">שידור חי - מצלמת חוף</p>
+            <h2>מצלמות חוף נוספות</h2>
           </a>
         </div>
       </div>
@@ -455,61 +453,12 @@
     <div id="page-content">
       <div id="video-container">
         <!-- <div class="cams-container"> -->
-        <video
-          id="remoteVideo"
-          class="video-js"
-          class="video-js vjs-tech"
-          frameborder="0"
-          crossorigin
-          
-          preload="auto"
-          poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
-        >
-          <!-- <source
-            src="wss://ec2-3-95-58-217.compute-1.amazonaws.com:8443"
-            type="video/mp4"
-            size="720"
-          /> -->
-          <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
-            type="video/mp4"
-            size="720"
-          />
-          <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
-            type="video/mp4"
-            size="1080"
-          />
-          <!-- Caption files -->
-          <track
-            kind="captions"
-            label="English"
-            srclang="en"
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-            default
-          />
-          <track
-            kind="captions"
-            label="Français"
-            srclang="fr"
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt"
-          />
-
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading
-            to a web browser that
-            <a href="https://videojs.com/html5-video-support/" target="_blank"
-              >supports HTML5 video</a
-            >
-          </p>
-        </video>
+        <video id="remoteVideo" autoplay controls></video>
         <button id="play-button">
           <img
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
+            src="./images/poster.png"
           />
-          <div id="play-icon">
-            <img class="image-play" src="./images/play.png" alt="play">
-          </div>
+          <div id="play-icon"></div>
         </button>
         <div id="ad-container"></div>
         <!-- </div> -->
@@ -519,16 +468,17 @@
     <a class="home-btn mobile-btn" style="color: white;" href="./list.html">
       <h1>מצלמות חוף נוספות</h1>
     </a>
+    <iframe width="560" height="315" src="//54.163.27.97:5080/LiveApp/play.html?name=117258289727856314740197" frameborder="0" allowfullscreen></iframe>
     <footer>
       <p style="text-align: center;">
         <a style="color: gold;" href="./index.html"> מצלמת חוף Beach Cam </a>
       </p>
     </footer>
-    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.min.js"></script>
     <script src="videojs.ima.js"></script>
     <script src="player.js"></script> -->
-
-    <script src="./ads.js"></script>
+    <!-- <script src="./webRtcAdaptor.js"></script> -->
+    <!-- <script src="./ads.js"></script> -->
   </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+    <!-- <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" /> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.css" /> -->
     <!-- <link rel="stylesheet" href="./videojs.ima.css" /> -->
 
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-    <script src="https://unpkg.com/video.js@6/dist/video.js"></script>
+    <!-- <script src="https://unpkg.com/video.js@6/dist/video.js"></script> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <!-- Google Tag Manager -->
     <script>
@@ -26,6 +26,12 @@
       })(window, document, "script", "dataLayer", "GTM-WPTQ3HT");
     </script>
     <!-- End Google Tag Manager -->
+    <script src="js/fetch.js"></script>
+    <script src="js/promise.min.js"></script>
+    <script src="js/fetch.stream.js"></script>
+    <script src="js/webrtc_adaptor.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <link rel="stylesheet" href="./style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="מצלמות חוף שידור ישיר ישראל" />
@@ -39,7 +45,7 @@
       type="image/png"
       href="https://akermang.github.io/WeatherApp/sun-favicon.png"
     />
-    <title>מצלמות חופים | BeachCam |  מצלמות חוף ישראל</title>
+    <title>מצלמות חופים | BeachCam | מצלמות חוף ישראל</title>
     <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
@@ -127,7 +133,7 @@
         font-size: 30px;
       }
 
-      .top-color{
+      .top-color {
         background-color: #9c27b0;
         color: white;
       }
@@ -243,7 +249,7 @@
         background-color: #008000a1;
       }
 
-      .home-btn:hover {
+      a.home-btn:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       }
 
@@ -443,69 +449,310 @@
       <div class="animat-box-in">
         <p>
           <a href="./marina.html">למרינה צפון |</a>
-          <a href="./forcast.html">תחזית גלים |</a>
+          <a href="./johnflorence.html">john Florence |</a>
           <a href="./list.html">מצלמות</a>
         </p>
       </div>
     </nav>
+    <!-- <div id="video_info">
+		Stream will start playing automatically<br />when it is live
+	</div> -->
+
+	<!-- HLS Player -->
+	<div style="width: 100%; max-width: 640px; max-height: 480px;" id="video_container">
+		<video id="video-player" style="display: none!important;"
+			
+			controls preload="auto" data-setup='{"fluid": true}'>
+			<p class="vjs-no-js">
+				To view this video please enable JavaScript, and consider upgrading
+				to a web browser that <a
+					href="http://videojs.com/html5-video-support/" target="_blank">supports
+					HTML5 video</a>
+			</p>
+		</video>
+	</div>
     <div id="page-content">
       <div id="video-container">
         <!-- <div class="cams-container"> -->
+        <!-- WebRTC Player -->
         <video
-          id="video-element"
-          class="video-js"
-          class="video-js vjs-tech"
-          frameborder="0"
-          crossorigin
-          controls
-          preload="auto"
-          poster="./images/poster.png"
-        >
-          <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-            type="video/mp4"
-            size="576"
-          />
-          <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
-            type="video/mp4"
-            size="720"
-          />
-          <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
-            type="video/mp4"
-            size="1080"
-          />
-          <!-- Caption files -->
-          <track
-            kind="captions"
-            label="English"
-            srclang="en"
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-            default
-          />
-          <track
-            kind="captions"
-            label="Français"
-            srclang="fr"
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt"
-          />
-
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading
-            to a web browser that
-            <a href="https://videojs.com/html5-video-support/" target="_blank"
-              >supports HTML5 video</a
-            >
-          </p>
-        </video>
+          id="remoteVideo"
+          playsinline
+          style="
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            max-height: 480px;
+            margin: 0 auto;
+            position: absolute;
+          "
+        ></video>
+        <img
+          id="play_button"
+          src="images/play.png"
+          onclick="playWebRTCVideo()"
+          style="position: absolute; top: 30px; left: 30px; display: none;"
+        />
+        <!-- <button id="play-button">play</button> -->
         <button id="play-button">
-          <img
-            src="./images/poster.png"
-          />
-          <div id="play-icon"></div>
+          <img src="./images/poster.png" />
+          <div id="play-icon">
+            <img class="image-play" src="./images/play.png" alt="play" />
+          </div>
         </button>
         <div id="ad-container"></div>
+        <script>
+          /**
+           * This page accepts 4 arguments.
+           * 1. "id": the stream id to play.It is mandatory
+           * 2. "token": the token to play stream. It's mandatory if token security is enabled on server side.
+           * 3. "autoplay": To start playing automatically if streams is available. Optional. Default value is true
+           * 4. "playOrder": the order which technologies is used in playing. Optional. Default value is "webrtc,hls".
+           *     possible values are "hls,webrtc","webrtc","hls"
+           */
+
+          //The play order, player tries to play according to this order, if it can not play then tries following format
+
+          var playOrder = ["hls", "webrtc"];
+
+          var name = "117258289727856314740197";
+          var token = "null";
+
+          var pAutoplay = "null";
+          var autoPlay = true;
+          if (pAutoplay == "false" || isMobile()) {
+            autoPlay = false;
+          }
+
+          var webRTCAdaptor = null;
+          var streamsFolder = "streams";
+
+          function webrtcNoStreamCallback() {
+            /**
+             * If HLS is in the play order then try to play HLS, if not wait for WebRTC stream
+             * In some cases user may want to remove HLS from the order and force to play WebRTC only
+             * in these cases player only waits for WebRTC streams
+             */
+            setTimeout(function () {
+              if (playOrder.includes("hls")) {
+                tryToHLSPlay(name, token, hlsNoStreamCallback);
+                console.log("hls")
+              } else {
+                  console.log("webRTCAdaptor")
+                webRTCAdaptor.getStreamInfo(name);
+              }
+            }, 2000);
+          }
+
+          function hlsNoStreamCallback() {
+            // document.getElementById("video_info").innerHTML =
+            //   "Stream will start playing automatically<br/>when it is live";
+            setTimeout(function () {
+              if (playOrder.includes("webrtc")) {
+                // It means there is no HLS stream, so try to play WebRTC stream
+                if (webRTCAdaptor == null) {
+                  initializeWebRTCPlayer(name, token, webrtcNoStreamCallback);
+                } else {
+                  webRTCAdaptor.getStreamInfo(name);
+                }
+              } else {
+                tryToHLSPlay(name, token, hlsNoStreamCallback);
+              }
+            }, 2000);
+          }
+
+          function hideHLSElements() {
+            // document.getElementById("video_container").style.display = "none";
+          }
+
+          function hideWebRTCElements() {
+            document.getElementById("remoteVideo").style.display = "none";
+            document.getElementById("play_button").style.display = "none";
+          }
+
+          function playWebRTCVideo() {
+            document.getElementById("remoteVideo").style.display = "block";
+            document
+              .getElementById("remoteVideo")
+              .play()
+              .then(function (value) {
+                //autoplay started
+                document.getElementById("play_button").style.display = "none";
+              })
+              .catch(function (error) {
+                //
+                document.getElementById("play_button").style.display = "block";
+                console.log("User interaction needed to start playing");
+              });
+          }
+
+          function initializeHLSPlayer(name, extension, token) {
+              console.log("initializeHLSPlayer")
+            hideWebRTCElements();
+
+            startHLSPlayer(name, extension, token);
+          }
+
+          function startHLSPlayer(name, extension, token) {
+              console.log("startHLSPlayer")
+            var type;
+            var liveStream = false;
+            if (extension == "mp4") {
+              type = "video/mp4";
+              liveStream = false;
+            } else if (extension == "m3u8") {
+              type = "application/x-mpegURL";
+              liveStream = true;
+            } else {
+              console.log("Unknown extension: " + extension);
+              return;
+            }
+
+            var preview = name;
+            if (name.endsWith("_adaptive")) {
+              preview = name.substring(0, name.indexOf("_adaptive"));
+            }
+
+            var player = videojs("video-player", {
+              poster: "previews/" + preview + ".png",
+            });
+
+            player.src({
+              src: "streams/" + name + "." + extension + "?token=" + token,
+              type: type,
+            });
+
+            player.poster("previews/" + preview + ".png");
+
+            if (autoPlay) {
+              player.ready(function () {
+                player.play();
+              });
+            }
+            document.getElementById("video_container").style.display = "block";
+            // document.getElementById("video_info").hidden = true;
+          }
+
+          function initializeWebRTCPlayer(name, token, noStreamCallback) {
+              console.log("initializeWebRTCPlayer")
+            hideHLSElements();
+
+            document.getElementById("remoteVideo").style.display = "block";
+
+            var pc_config = null;
+
+            var sdpConstraints = {
+              OfferToReceiveAudio: true,
+              OfferToReceiveVideo: true,
+            };
+            var mediaConstraints = {
+              video: false,
+              audio: false,
+            };
+            //54.163.27.97:5080/WebRTCAppEE
+            ws: var appName = location.pathname.substring(
+              0,
+              location.pathname.lastIndexOf("/") + 1
+            );
+            console.log("appName:", appName);
+            var path =
+              "100.26.23.113" + ":" + "5080/" + "LiveApp/" + "websocket";
+            var websocketURL = "ws://" + path;
+
+            if (location.protocol.startsWith("https")) {
+              websocketURL = "wss://" + path;
+            }
+
+            //webRTCAdaptor is a global variable
+            webRTCAdaptor = new WebRTCAdaptor({
+              websocket_url: websocketURL,
+              mediaConstraints: mediaConstraints,
+              peerconnection_config: pc_config,
+              sdp_constraints: sdpConstraints,
+              remoteVideoId: "remoteVideo",
+              isPlayMode: true,
+              debug: true,
+              callback: function (info, description) {
+                if (info == "initialized") {
+                  console.log("initialized");
+                  webRTCAdaptor.getStreamInfo(name);
+                } else if (info == "streamInformation") {
+                  console.log("stream information");
+                  webRTCAdaptor.play(name, token);
+                } else if (info == "play_started") {
+                  //joined the stream
+                  console.log("play started");
+                //   document.getElementById("video_info").style.display = "none";
+                  // playWebRTCVideo();
+                } else if (info == "play_finished") {
+                  //leaved the stream
+                  console.log("play finished");
+                  //check that publish may start again
+                  setTimeout(function () {
+                    webRTCAdaptor.getStreamInfo(name);
+                  }, 3000);
+                } else if (info == "closed") {
+                  //console.log("Connection closed");
+                  if (typeof description != "undefined") {
+                    console.log(
+                      "Connecton closed: " + JSON.stringify(description)
+                    );
+                  }
+                }
+              },
+              callbackError: function (error) {
+                //some of the possible errors, NotFoundError, SecurityError,PermissionDeniedError
+
+                console.log("error callback: " + JSON.stringify(error));
+
+                if (error == "no_stream_exist") {
+                  if (typeof noStreamCallback != "undefined") {
+                    noStreamCallback();
+                  }
+                }
+                if (error == "notSetRemoteDescription") {
+                  /*
+                   * If getting codec incompatible or remote description error, it will redirect HLS player.
+                   */
+                  tryToHLSPlay(name, token, hlsNoStreamCallback);
+                }
+              },
+            });
+          }
+
+          if (name != "null") {
+            if (name.startsWith(streamsFolder)) {
+              /*
+               * If name starts with streams, it's hls or mp4 file to be played
+               */
+              var lastIndexOfDot = name.lastIndexOf(".");
+              streamPath = name.substring(
+                streamsFolder.length + 1,
+                lastIndexOfDot
+              );
+              var extension = name.substring(lastIndexOfDot + 1);
+              initializeHLSPlayer(streamPath, extension, token);
+            } else {
+              /*
+               * Check that which one is in the first order
+               */
+              if (playOrder[0] == "webrtc") {
+                initializeWebRTCPlayer(name, token, webrtcNoStreamCallback);
+              } else if (playOrder[0] == "hls") {
+                tryToHLSPlay(name, token, hlsNoStreamCallback);
+              } else {
+                alert(
+                  "Unsupported play order requested. Supported formats are webrtc and hls. Use something like playOrder=webrtc,hls"
+                );
+              }
+            }
+          } else {
+            alert(
+              "No stream specified. Please add ?id={STREAM_ID}  to the url"
+            );
+          }
+        </script>
+
         <!-- </div> -->
       </div>
     </div>
@@ -518,11 +765,11 @@
         <a style="color: gold;" href="./index.html"> מצלמת חוף Beach Cam </a>
       </p>
     </footer>
-    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.min.js"></script>
     <script src="videojs.ima.js"></script>
     <script src="player.js"></script> -->
 
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="./ads.js"></script>
   </body>
 </html>
