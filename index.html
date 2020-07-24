@@ -662,8 +662,8 @@
             );
             console.log("appName:", appName);
             var path =
-              "100.26.23.113" + ":" + "5080/" + "LiveApp/" + "websocket";
-            var websocketURL = "ws://" + path;
+              "100.26.23.113" + ":" + "5443/" + "LiveApp/" + "websocket";
+            var websocketURL = "wss://" + path;
 
             if (location.protocol.startsWith("https")) {
               websocketURL = "wss://" + path;
