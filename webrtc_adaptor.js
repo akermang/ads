@@ -11,7 +11,7 @@ var mediaConstraints = {
 };
 
 var webRTCAdaptor = new WebRTCAdaptor({
-    websocket_url : "ws://54.163.27.97:5080/WebRTCAppEE",
+    websocket_url : "ws://54.163.27.97:5443/WebRTCAppEE",
     mediaConstraints : mediaConstraints,
     peerconnection_config : pc_config,
     sdp_constraints : sdpConstraints,
