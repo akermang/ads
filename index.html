@@ -655,14 +655,15 @@
               video: false,
               audio: false,
             };
-            //54.163.27.97:5080/WebRTCAppEE
-            ws: var appName = location.pathname.substring(
+            var appName = location.pathname.substring(
               0,
               location.pathname.lastIndexOf("/") + 1
             );
-            console.log("appName:", appName);
+
+            var port = (location.protocol.startsWith("https"))? "5443/":"5080/";
+
             var path =
-              "beachcam.me" + ":" + "5443/" + "LiveApp/" + "websocket";
+              "www.beachcam.me" + ":" + port + "LiveApp/" + "websocket";
             var websocketURL = "ws://" + path;
 
             if (location.protocol.startsWith("https")) {

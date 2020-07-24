@@ -224,8 +224,9 @@
 		ws://54.163.27.97:5080/WebRTCAppEE
 		var appName = location.pathname.substring(0, location.pathname.lastIndexOf("/")+1);
 		console.log("appName:", appName)
-		var path =  "100.26.23.113" + ":" + "5443/" + "LiveApp/" + "websocket";
-		var websocketURL =  "wss://" + path;
+		var port = (location.protocol.startsWith("https"))? "5443/":"5080/";
+		var path =  "100.26.23.113" + ":" + port + "LiveApp/" + "websocket";
+		var websocketURL =  "ws://" + path;
 
 		if (location.protocol.startsWith("https")) {
 			websocketURL = "wss://" + path;
