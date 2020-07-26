@@ -7,13 +7,13 @@
  * Handles user interaction and creates the player and ads controllers.
  */
 var Application = function() {
-  this.adTagBox_ = document.getElementById('tagText');
-  this.sampleAdTag_ = document.getElementById('sampleAdTag');
-  this.sampleAdTag_.addEventListener(
-      'click',
-      this.bind_(this, this.onSampleAdTagClick_),
-      false);
-  this.console_ = document.getElementById('console');
+  // this.adTagBox_ = document.getElementById('tagText');
+  // this.sampleAdTag_ = document.getElementById('sampleAdTag');
+  // this.sampleAdTag_.addEventListener(
+  //     'click',
+  //     this.bind_(this, this.onSampleAdTagClick_),
+  //     false);
+  // this.console_ = document.getElementById('console');
   this.playButton_ = document.getElementById('playpause');
   this.playButton_.addEventListener(
       'click',
@@ -47,7 +47,11 @@ var Application = function() {
 
   this.videoPlayer_ = new VideoPlayer();
   this.ads_ = new Ads(this, this.videoPlayer_);
-  this.adTagUrl_ = '';
+  this.adTagUrl_ = 'https://pubads.g.doubleclick.net/' +
+  'gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&' +
+  'ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&' +
+  'unviewed_position_start=1&' +
+  'cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
 
   this.videoEndedCallback_ = this.bind_(this, this.onContentEnded_);
   this.setVideoEndedCallbackEnabled(true);
@@ -67,10 +71,10 @@ Application.prototype.setVideoEndedCallbackEnabled = function(enable) {
   }
 };
 
-Application.prototype.log = function(message) {
-  console.log(message);
-  this.console_.innerHTML = this.console_.innerHTML + '<br/>' + message;
-};
+// Application.prototype.log = function(message) {
+//   console.log(message);
+//   this.console_.innerHTML = this.console_.innerHTML + '<br/>' + message;
+// };
 
 Application.prototype.resumeAfterAd = function() {
   this.videoPlayer_.play();
@@ -95,18 +99,18 @@ Application.prototype.bind_ = function(thisObj, fn) {
   };
 };
 
-Application.prototype.onSampleAdTagClick_ = function() {
-  this.adTagBox_.value = this.SAMPLE_AD_TAG_;
-};
+// Application.prototype.onSampleAdTagClick_ = function() {
+//   this.adTagBox_.value = this.SAMPLE_AD_TAG_;
+// };
 
 Application.prototype.onClick_ = function() {
   if (!this.adsDone_) {
-    if (this.adTagBox_.value == '') {
-      this.log('Error: please fill in an ad tag');
-      return;
-    } else {
-      this.adTagUrl_ = this.adTagBox_.value;
-    }
+    // if (this.adTagBox_.value == '') {
+    //   this.log('Error: please fill in an ad tag');
+    //   return;
+    // } else {
+    //   this.adTagUrl_ = this.adTagBox_.value;
+    // }
     // The user clicked/tapped - inform the ads controller that this code
     // is being run in a user action thread.
     this.ads_.initialUserAction();
@@ -183,6 +187,7 @@ Application.prototype.updateChrome_ = function() {
 
 Application.prototype.loadAds_ = function() {
   this.videoPlayer_.removePreloadListener();
+  console.log("this.adTagUrl_:", this.adTagUrl_)
   this.ads_.requestAds(this.adTagUrl_);
 };
 

@@ -33,7 +33,7 @@ footer {
   height: 360px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 #content-wrapper {
@@ -87,12 +87,12 @@ footer {
   border: 1px #f00 solid;
   color: #f00;
 }
-
+#remoteVideo,
 #content {
   overflow: hidden;
 }
 
-#content, #adcontainer {
+#content, #adcontainer, #remoteVideo {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -111,23 +111,6 @@ footer {
   overflow-y: scroll;
   margin-left: auto;
   margin-right: auto;
-}
-
-#companionDiv, #customClick {
-  width: 728px;
-  height: 90px;
-  margin-top: 20px;
-}
-
-#customClick {
-  background-color: #807F80;
-  display: none;
-  text-align: center;
-}
-
-#customClickTextWrapper {
-  display: table-cell;
-  vertical-align: middle;
 }
 
 .urlLink {

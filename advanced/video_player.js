@@ -7,7 +7,7 @@
  * Handles video player functionality.
  */
 var VideoPlayer = function() {
-  this.contentPlayer = document.getElementById('content');
+  this.contentPlayer = document.getElementById('remoteVideo');
   this.adContainer = document.getElementById('adcontainer');
   this.videoPlayerContainer_ = document.getElementById('videoplayer');
 

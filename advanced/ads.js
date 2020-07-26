@@ -9,16 +9,16 @@
 var Ads = function(application, videoPlayer) {
   this.application_ = application;
   this.videoPlayer_ = videoPlayer;
-  this.customClickDiv_ = document.getElementById('customClick');
   this.contentCompleteCalled_ = false;
   google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED);
+  google.ima.settings.setDisableCustomPlaybackForIOS10Plus(true);
   // Call setLocale() to localize language text and downloaded swfs
   // google.ima.settings.setLocale('fr');
+  
   this.adDisplayContainer_ =
       new google.ima.AdDisplayContainer(
           this.videoPlayer_.adContainer,
-          this.videoPlayer_.contentPlayer,
-          this.customClickDiv_);
+          this.videoPlayer_.contentPlayer);
   this.adsLoader_ = new google.ima.AdsLoader(this.adDisplayContainer_);
   this.adsManager_ = null;
 
@@ -77,7 +77,7 @@ Ads.prototype.contentEnded = function() {
 };
 
 Ads.prototype.onAdsManagerLoaded_ = function(adsManagerLoadedEvent) {
-  this.application_.log('Ads loaded.');
+  // this.application_.log('Ads loaded.');
   var adsRenderingSettings = new google.ima.AdsRenderingSettings();
   adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
   this.adsManager_ = adsManagerLoadedEvent.getAdsManager(
@@ -86,9 +86,7 @@ Ads.prototype.onAdsManagerLoaded_ = function(adsManagerLoadedEvent) {
 };
 
 Ads.prototype.startAdsManager_ = function(adsManager) {
-  if (adsManager.isCustomClickTrackingUsed()) {
-    this.customClickDiv_.style.display = 'table';
-  }
+  
   // Attach the pause/resume events.
   adsManager.addEventListener(
       google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
@@ -154,7 +152,7 @@ Ads.prototype.onContentResumeRequested_ = function() {
 };
 
 Ads.prototype.onAdEvent_ = function(adEvent) {
-  this.application_.log('Ad event: ' + adEvent.type);
+  // this.application_.log('Ad event: ' + adEvent.type);
 
   if (adEvent.type == google.ima.AdEvent.Type.CLICK) {
     this.application_.adClicked();
@@ -168,7 +166,7 @@ Ads.prototype.onAdEvent_ = function(adEvent) {
 };
 
 Ads.prototype.onAdError_ = function(adErrorEvent) {
-  this.application_.log('Ad error: ' + adErrorEvent.getError().toString());
+  // this.application_.log('Ad error: ' + adErrorEvent.getError().toString());
   if (this.adsManager_) {
     this.adsManager_.destroy();
   }
