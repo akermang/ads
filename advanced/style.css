@@ -5,13 +5,13 @@ body {
 
 header, footer { text-align:center; width: 100%; }
 
-header {
+/* header {
   height: 40px;
   font-size: 40px;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
-}
+} */
 
 footer {
   margin-top: 20px;
@@ -20,7 +20,7 @@ footer {
 #container {
   margin-left: auto;
   margin-right: auto;
-  width: 728px;
+  /* width: 728px; */
 }
 
 #videoplayer {
