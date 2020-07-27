@@ -14,6 +14,7 @@ var Application = function() {
   //     this.bind_(this, this.onSampleAdTagClick_),
   //     false);
   // this.console_ = document.getElementById('console');
+  
   this.playButton_ = document.getElementById('playpause');
   this.playButton_.addEventListener(
       'click',

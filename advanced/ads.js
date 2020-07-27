@@ -148,6 +148,7 @@ Ads.prototype.onContentResumeRequested_ = function() {
   // post-roll's CONTENT_RESUME_REQUESTED
   if (!this.contentCompleteCalled_) {
     this.application_.resumeAfterAd();
+    document.getElementById("poster").style.visibility = "hidden";
   }
 };
 

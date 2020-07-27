@@ -55,6 +55,12 @@
         playsinline
 
       ></video>
+      <img
+      id="poster"
+      src="../images/poster.png"
+      onclick="playWebRTCVideo()"
+      style="position: absolute; top: 0; left: 0;width: 100%;"
+    />
       <div id="adcontainer">
       </div>
       <button id="playpause" title="Play/Pause">&#9654;</button>
@@ -181,7 +187,7 @@
           type: type,
         });
 
-        player.poster("previews/" + preview + ".png");
+        player.poster("prevfiews/" + preview + ".png");
 
         if (autoPlay) {
           player.ready(function () {
