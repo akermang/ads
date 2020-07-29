@@ -590,6 +590,7 @@
           src: "streams/" + name + "." + extension + "?token=" + token,
           type: type,
         });
+        console.log("look for streams:",streams)
 
         player.poster("prevfiews/" + preview + ".png");
 
@@ -622,6 +623,7 @@
           0,
           location.pathname.lastIndexOf("/") + 1
         );
+        console.log("appName:", appName)
 
         var port = (location.protocol.startsWith("https"))? "5443/":"5080/";
 
@@ -702,6 +704,7 @@
           );
           var extension = name.substring(lastIndexOfDot + 1);
           initializeHLSPlayer(streamPath, extension, token);
+          console.log("initializeHLSPlayer streamPath", streamPath)
         } else {
           /*
            * Check that which one is in the first order

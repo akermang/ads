@@ -1,4 +1,4 @@
-var player = videojs('video-element');
+var player = videojs('remoteVideo');
 
 var options = {
   adTagUrl: "https://pubads.g.doubleclick.net/gampad/ads?" +

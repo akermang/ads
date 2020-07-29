@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" /> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.css" /> -->
-    <!-- <link rel="stylesheet" href="./videojs.ima.css" /> -->
+    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.css" />
+    <link rel="stylesheet" href="./videojs.ima.css" />
 
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-    <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-    <!-- <script src="https://unpkg.com/video.js@6/dist/video.js"></script> -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://unpkg.com/video.js@6/dist/video.js"></script>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <!-- Google Tag Manager -->
     <script>
@@ -471,7 +471,6 @@
           crossorigin
           
           preload="auto"
-          poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
         >
           <!-- <source
             src="wss://ec2-3-95-58-217.compute-1.amazonaws.com:8443"
@@ -479,14 +478,19 @@
             size="720"
           /> -->
           <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
-            type="video/mp4"
+            src="https://www.beachcam.me:5443/LiveApp/streams/117258289727856314740197_adaptive.m3u8"
+            type="application/x-mpegURL"
             size="720"
           />
           <source
-            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
+          src="https://www.beachcam.me:5443/LiveApp/streams/117258289727856314740197.m3u8"
+          type="application/x-mpegURL"
+          size="720"
+        />
+          <source
+            src="https://www.beachcam.me:5443/LiveApp/streams/117258289727856314740197.mp4"
             type="video/mp4"
-            size="1080"
+            size="720"
           />
           <!-- Caption files -->
           <track
@@ -536,9 +540,9 @@
       </p>
     </footer>
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.6.5/videojs-contrib-ads.min.js"></script>
     <script src="videojs.ima.js"></script>
-    <script src="player.js"></script> -->
+    <script src="player.js"></script>
 
     <script src="./ads.js"></script>
   </body>

@@ -13,7 +13,7 @@ if (!String.prototype.endsWith)
 	};
 }
 
-
+https://www.beachcam.me:5443/LiveApp/streams/117258289727856314740197.m3u8
 function tryToHLSPlay(name, token, noStreamCallback) {
 	fetch("streams/"+ name +"_adaptive.m3u8", {method:'HEAD'})
 	.then(function(response) {

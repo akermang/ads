@@ -659,6 +659,7 @@
               0,
               location.pathname.lastIndexOf("/") + 1
             );
+            console.log("appName:", appName)
 
             var port = (location.protocol.startsWith("https"))? "5443/":"5080/";
 
@@ -729,6 +730,7 @@
 
           if (name != "null") {
             if (name.startsWith(streamsFolder)) {
+              console.log("name:", name)
               /*
                * If name starts with streams, it's hls or mp4 file to be played
                */
